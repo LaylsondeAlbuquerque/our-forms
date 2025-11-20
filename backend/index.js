@@ -37,6 +37,21 @@ app.post('/api/cadastro', async (req, res) => {
             dataNascimento,
             senha
         } = req.body;
+
+        // 5.1.1 Validação manual de campos obrigatórios
+        if (!primeiroNome || !sobrenome || !email || !telefone || !dataNascimento || !senha) {
+            return res.status(400).json({ message: 'Todos os campos obrigatórios devem ser preenchidos.' });
+        }
+
+        // 5.1.2 Validação simples do formato de email
+        if (!email.includes('@') || !email.includes('.')) {
+            return res.status(400).json({ message: 'Formato de E-mail inválido.'});
+        }
+
+        //  5.1.3 Validação do tamanho da senha
+        if (senha.length < 12) {
+            return res.status(400).json({ message: 'Senha deve ter no mínimo 12 caracteres.'});
+        }
         
         // 5.2 Criptografando a senha
         const senhaHash = await bcrypt.hash(senha, 10);
