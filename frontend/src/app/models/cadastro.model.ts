@@ -4,6 +4,6 @@ export interface CadastroModel {
     sobrenome: string;
     email: string;
     telefone: string;
-    dataNascimento: Date;
+    dataNascimento: string;
     senha: string;
 }
