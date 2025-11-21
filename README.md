@@ -66,7 +66,7 @@ our-forms/
 
 ##  Trajetória de Construção das Etapas
 <details>
-  <summary><h3> Cadastro de usuário (etapa atual) </h3></summary>
+  <summary><h3> Cadastro de usuário </h3></summary>
   
   1.  [x] **Estrutura Inicial:** Criação do esqueleto HTML e navegação básica.
   2.  [x] **Validação Frontend:** Implementação de regras no Angular (`required`, `minlength`, `pattern`) com feedback visual.
