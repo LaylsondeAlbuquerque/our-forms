@@ -82,15 +82,15 @@
             <div class="flex flex-col w-full ">
                 <label for="dataNascimento">Data de Nascimento: </label>
                 <input
-                    class="border-b-2 border-blue-600 focus:border-2 focus:!border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600 my-2 py-1 px-2 placeholder-gray-300 outline-none"
+                    class="border-b-2 border-blue-600 focus:border-2 focus:!border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600  my-2 py-1 px-2 placeholder-gray-300 outline-none" [class.border-purple-600]="novoCadastro.dataNascimento > today"
                     type="date" id="dataNascimento" name="dataNascimento" [(ngModel)]="novoCadastro.dataNascimento"
                     required [max]="today" #dataInput="ngModel">
-                @if (dataInput.invalid && (dataInput.dirty || dataInput.touched)) {
+                @if (dataInput.dirty || dataInput.touched) {
                 <div class="text-xs text-red-600">
                     @if (dataInput.errors?.['required']) {
                     A data de nascimento é obrigatória.
                     }
-                    @if (dataInput.errors?.['max']) {
+                    @if (novoCadastro.dataNascimento > today) {
                     A data de nascimento não pode ser no futuro.
                     }
                 </div>
@@ -116,7 +116,7 @@
             </div>
 
             <button class="border-2 border-red-600 my-8 p-2 w-fit cursor-pointer disabled:border-red-300 disabled:text-gray-500 disabled:cursor-not-allowed" type="submit"
-                [disabled]="cadastroForm.invalid">Cadastrar</button>
+                [disabled]="cadastroForm.invalid || (novoCadastro.dataNascimento > today)">Cadastrar</button>
         </form>
 
     </div>

@@ -52,6 +52,14 @@ app.post('/api/cadastro', async (req, res) => {
         if (senha.length < 12) {
             return res.status(400).json({ message: 'Senha deve ter no mínimo 12 caracteres.'});
         }
+
+        // 5.1.4 Validação de data no futuro
+        const dataNascimentoObjetoDate = new Date(dataNascimento);
+        const dataAtual = new Date();
+
+        if (dataNascimentoObjetoDate > dataAtual) {
+            return res.status(400).json({ message: 'A data de nascimento não pode ser no futuro.' });
+        }
         
         // 5.2 Criptografando a senha
         const senhaHash = await bcrypt.hash(senha, 10);
