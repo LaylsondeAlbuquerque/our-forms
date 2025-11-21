@@ -24,7 +24,7 @@ export default class Cadastro {
     sobrenome: '',
     email: '',
     telefone: '',
-    dataNascimento: this.today,
+    dataNascimento: '',
     senha: ''
   };
 

@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-yellow-25: #FDFBF7;
+  --font-vietnam: "Be Vietnam Pro", sans-serif;
+}
+
+body {
+     font-family: 'Momo Trust Display', sans-serif;
+     
+}
