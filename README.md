@@ -81,7 +81,7 @@ our-forms/
 <details open>
   <summary><h3>Login e Autenticação (Etapa Atual) 🚧</h3></summary>
 
-  1. [ ] **Frontend (Estrutura):** Criação do esqueleto HTML da página de Login.
+  1. [x] **Frontend (Estrutura):** Criação do esqueleto HTML da página de Login.
   2. [ ] **Backend (Setup):** Instalação do pacote `jsonwebtoken` (JWT) no Node.js.
   3. [ ] **Backend (API):** Criação da rota POST `/api/login` para receber credenciais.
   4. [ ] **Segurança Backend:** Lógica de comparação de senha (`bcrypt.compare`) e geração do Token JWT.
