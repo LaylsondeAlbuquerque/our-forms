@@ -55,7 +55,7 @@ our-forms/
 
 ##  Funcionalidades
 
-- [ ] **Cadastro de Usuários:** Criação de conta com criptografia de senha.
+- [x] **Cadastro de Usuários:** Criação de conta com criptografia de senha.
 - [ ] **Login de Usuários:** Autenticação segura com JWT.
 - [ ] **Dashboard:** Visão geral dos formulários do usuário.
 - [ ] **Criação de Formulários:** Interface para montar perguntas dinâmicas.
@@ -75,7 +75,21 @@ our-forms/
   5.  [x] **Segurança:** Implementação de Hash de senha (`bcrypt`) e proteção contra SQL Injection.
   6.  [x] **Testes de API:** Validação isolada do backend utilizando **Postman**.
   7.  [x] **Integração:** Conexão do Frontend com Backend via `HttpClient` e `AuthService`.
-  8.  [ ] **Estilização:** Refatoração do design utilizando **Tailwind CSS**.
+  8.  [x] **Estilização:** Refatoração do design utilizando **Tailwind CSS**.
+
+</details>
+<details open>
+  <summary><h3>Login e Autenticação (Etapa Atual) 🚧</h3></summary>
+
+  1. [ ] **Frontend (Estrutura):** Criação do esqueleto HTML da página de Login.
+  2. [ ] **Backend (Setup):** Instalação do pacote `jsonwebtoken` (JWT) no Node.js.
+  3. [ ] **Backend (API):** Criação da rota POST `/api/login` para receber credenciais.
+  4. [ ] **Segurança Backend:** Lógica de comparação de senha (`bcrypt.compare`) e geração do Token JWT.
+  5. [ ] **Integração:** Atualização do `AuthService` para realizar login e salvar o Token no `localStorage`.
+  6. [ ] **Gerenciamento de Estado:** Lógica para identificar se o usuário está logado ou não (Botão Sair/Logout).
+  7. [ ] **Proteção de Rotas:** Criação de um `AuthGuard` no Angular para proteger a rota `/dashboard`.
+  8. [ ] **Feedback:** Tratamento de erros de login (senha incorreta, usuário não encontrado).
+  9. [ ] **Estilização:** Refatoração do design da página de Login utilizando **Tailwind CSS**.
 
 </details>
 
@@ -84,14 +98,15 @@ our-forms/
 ##  O que eu aprendi até agora
 
 <details>
-  <summary><h3> Na etapa da construção de cadastro de usuários </h3></summary>
+  <summary><h3>Na etapa da construção de cadastro de usuários</h3></summary>
 
-  * **Arquitetura Monorepo:** Como organizar Frontend e Backend no mesmo repositório Git de forma limpa.
-  * **Angular Moderno (v20):** Uso de componentes `Standalone`, injeção de dependência com `inject()` e carregamento de rotas com `loadComponent`.
-  * **Observables:** Como funciona o fluxo assíncrono (`subscribe`) entre o serviço e o componente.
-  * **Segurança Backend:** A importância de não confiar no frontend, validação manual de dados no servidor e como prevenir ataques de SQL Injection usando consultas parametrizadas.
-  * **API REST:** Diferença entre `req` (pedido) e `res` (resposta), e o uso correto de status HTTP (201 para sucesso, 409 para conflito, 400 para erro do cliente).
-  * **Fluxo de Dados:** Como o `HttpClient` conecta o Angular ao Express, e como o CORS permite essa comunicação entre portas diferentes (`localhost:4200` e `3000`).
+  * **Arquitetura Monorepo:** Como organizar Frontend e Backend no mesmo repositório Git, resolvendo conflitos de pastas `.git` aninhadas.
+  * **Angular Moderno (v20):** Uso de componentes `Standalone`, injeção `inject()` e comunicação via `HttpClient` e `Observables`.
+  * **Segurança Backend:** Validação manual de dados no Node.js, proteção contra SQL Injection e hash de senhas com `bcrypt`.
+  * **Tailwind CSS v4:** Configuração moderna via `@theme` no CSS (sem `tailwind.config.js`), uso de classes arbitrárias e responsividade (`md:flex-row`, `md:w-2/3`).
+  * **Estilização Dinâmica:** Como estilizar inputs do Angular baseados em seu estado de validação usando seletores como `[&.ng-invalid.ng-touched]`.
+  * **Layout & UX:** Centralização vertical/horizontal com Flexbox, uso de fontes personalizadas (Google Fonts) e feedback visual para o usuário (botões desabilitados, cursores).
+  * **API REST:** Fluxo completo de Request/Response e tratamento correto de Status Codes (201, 400, 409).
 
 </details>
 
