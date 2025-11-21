@@ -79,7 +79,7 @@ our-forms/
 
 </details>
 <details open>
-  <summary><h3>Login e Autenticação (Etapa Atual) 🚧</h3></summary>
+  <summary><h3>Login e Autenticação (Etapa Atual)</h3></summary>
 
   1. [x] **Frontend (Estrutura):** Criação do esqueleto HTML da página de Login.
   2. [ ] **Backend (Setup):** Instalação do pacote `jsonwebtoken` (JWT) no Node.js.
