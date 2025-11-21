@@ -9,15 +9,26 @@
             </div>
         </div>
 
-        <form>
+        <form #loginForm="ngForm" (submit)="onSubmit()">
             <div>
                 <label for="email">Email: </label>
-                <input type="email" placeholder="fulaninhodetal@algumemail.com" id="email" name="email">
+                <input 
+                    type="email" 
+                    placeholder="fulaninhodetal@algumemail.com" 
+                    id="email" 
+                    name="email" 
+                    [(ngModel)]="novoLogin.email">
             </div>
             <div>
                 <label for="senha">Senha: </label>
-                <input type="password" placeholder="digite sua senha aqui." id="senha" name="senha">
+                <input 
+                    type="password" 
+                    placeholder="digite sua senha aqui." 
+                    id="senha" 
+                    name="senha" 
+                    [(ngModel)]="novoLogin.senha">
             </div>
+            <button type="submit">Login</button>
         </form>
 
     </div>
