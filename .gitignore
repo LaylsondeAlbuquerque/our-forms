@@ -1,0 +1,14 @@
+# --- GERAL ---
+.DS_Store
+Thumbs.db
+
+# --- BACKEND (Node.js) ---
+backend/node_modules/
+backend/.env
+backend/npm-debug.log
+
+# --- FRONTEND (Angular) ---
+frontend/node_modules/
+frontend/.angular/
+frontend/dist/
+frontend/.vscode/
