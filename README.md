@@ -28,6 +28,7 @@ O projeto adota uma arquitetura moderna baseada em **componentes reutilizáveis*
 
 ##  Estrutura das Pastas
 
+```
 our-forms/
 ├── backend/                 # API Node.js + Express
 │   ├── node_modules/
@@ -60,6 +61,7 @@ our-forms/
 ├── .gitignore                  # arquivos que não precisam ir para o git/github
 ├── LICENSE                  # Licença do projeto
 └── README.md                # Documentação
+```
 
 <br/><br/>
 
