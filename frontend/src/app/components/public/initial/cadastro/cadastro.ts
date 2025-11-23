@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { CadastroModel } from '../../models/cadastro.model';
+import { CadastroModel } from '../../../../models/cadastro.model';
 import { FormsModule, NgForm } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
 
 
