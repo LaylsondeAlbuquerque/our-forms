@@ -4,10 +4,12 @@ import mysql from 'mysql2/promise';
 import bcrypt from 'bcryptjs';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
 // --- 2. Configurações Iniciais ---
+dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 // --- 3. Middlewares  ---
 app.use(
@@ -20,10 +22,10 @@ app.use(express.json());
 // --- 4. Conexão com o Banco de Dados (MySQL) ---
 // O 'pool' gerencia várias conexões para ser mais rápido
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'meus_formularios_db' // <-- CORRIGIDO
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
 });
 
 // --- 5. O ponto de entrada do Cadastro ---
@@ -168,6 +170,7 @@ app.post('/api/login', async (req, res) => {
 
         // 6.3.1 Validação: se o email existe no BD
         if (rows.length == 0) {
+            await registrarFalha();
             return res.status(401).json({ message: 'O E-mail ou senha incorretos.' });
         }
 
@@ -189,7 +192,7 @@ app.post('/api/login', async (req, res) => {
         // 6.4 Gerando o Token (não o do senhor dos aneis)
         const token = jwt.sign(
             { id: usuario.id, email: usuario.email },
-            'CHAVE_SEGURA_E_SECRETA',
+            process.env.JWT_SECRET,
             { expiresIn: '24h' }
         );
 
@@ -205,7 +208,7 @@ app.post('/api/login', async (req, res) => {
 
     } catch (error) {
                 console.error('Erro no Login: ', error);
-                res.status(500).json({ message: 'Erro interno nos servidor' });
+                res.status(500).json({ message: 'Erro interno no servidor' });
     }
 });
 
