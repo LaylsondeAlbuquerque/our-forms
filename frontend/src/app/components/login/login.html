@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <form #loginForm="ngForm" (submit)="onSubmit()">
+        <form #loginForm="ngForm" (submit)="onSubmit(loginForm)">
             <div>
                 <label for="email">Email: </label>
                 <input type="email" placeholder="fulaninhodetal@algumemail.com" id="email" name="email"
