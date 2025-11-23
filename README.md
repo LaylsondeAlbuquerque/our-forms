@@ -7,9 +7,9 @@
 
 ##  Sobre o Projeto 
 
-O **Our Forms** é uma aplicação Full-Stack para criação e gerenciamento de formulários personalizados. O objetivo é permitir que usuários se cadastrem, criem seus próprios formulários dinâmicos e coletem respostas de outras pessoas, similar ao Google Forms.
+O **Our Forms** é uma plataforma Full-Stack para construção de formulários e **inteligência de dados**. Mais do que apenas coletar respostas (similar ao Google Forms), o objetivo é permitir que usuários criem **Dashboards Dinâmicos** para visualizar e analisar os resultados de forma gráfica e intuitiva.
 
-Este projeto está sendo desenvolvido para consolidar conhecimentos em arquitetura web, integração entre frontend e backend, e segurança de dados.
+O projeto adota uma arquitetura moderna baseada em **componentes reutilizáveis** (Shared Public/Private Views), focando em escalabilidade, segurança robusta e separação clara de responsabilidades.
 
 <br/><br/>
 
@@ -28,9 +28,6 @@ Este projeto está sendo desenvolvido para consolidar conhecimentos em arquitetu
 
 ##  Estrutura das Pastas
 
-O projeto está organizado no formato de **Monorepo**, contendo tanto o cliente (frontend) quanto o servidor (backend).
-
-```text
 our-forms/
 ├── backend/                 # API Node.js + Express
 │   ├── node_modules/
@@ -40,27 +37,52 @@ our-forms/
 ├── frontend/                # Aplicação Angular v20
 │   ├── src/
 │   │   └── app/
-│   │       ├── components/  # Componentes Standalone (Cadastro, Login, Home)
-│   │       ├── models/      # Interfaces e Tipos (CadastroModel)
+│   │       ├── components/  # Arquitetura de Componentes
+│   │       │   ├── public/              # Área Pública (Acesso Externo)
+│   │       │   │   ├── initial/         # (Home, Login, Cadastro)
+│   │       │   │   ├── shared-public/   # (Visualizadores de Dashboard/Form)
+│   │       │   │   ├── public-layout/   # (Navbar Pública + Router Outlet)
+│   │       │   │   └── not-found/       # (Erro 404)
+│   │       │   ├── private/             # Área Logada (Gestão)
+│   │       │   │   ├── private-layout/  # (Sidebar + Header Logado)
+│   │       │   │   ├── profile/         # (Configurações do Usuário)
+│   │       │   │   ├── dashboard/       # (Builder, List, View Privado)
+│   │       │   │   └── forms/           # (Editor, List, Results)
+│   │       │   └── shared/              # Recursos Globais
+│   │       │       ├── ui/              # (Botões, Cards, Inputs)
+│   │       │       └── features/        # (Motores de renderização reutilizáveis)
+│   │       ├── models/      # Interfaces e Tipos (CadastroModel, LoginModel)
 │   │       ├── services/    # Comunicação com API (AuthService)
 │   │       ├── app.config.ts
 │   │       └── app.routes.ts
 │   ├── angular.json
 │   └── ...
+├── .gitignore                  # arquivos que não precisam ir para o git/github
 ├── LICENSE                  # Licença do projeto
 └── README.md                # Documentação
-```
 
 <br/><br/>
 
 ##  Funcionalidades
 
-- [x] **Cadastro de Usuários:** Criação de conta com criptografia de senha.
-- [ ] **Login de Usuários:** Autenticação segura com JWT.
-- [ ] **Dashboard:** Visão geral dos formulários do usuário.
-- [ ] **Criação de Formulários:** Interface para montar perguntas dinâmicas.
-- [ ] **Responder Formulários:** Página pública para coleta de respostas.
-- [ ] **Visualização de Respostas:** Gráficos ou listas com os dados coletados.
+### Autenticação e Segurança
+- [x] **Cadastro de Usuários:** Criação de conta com criptografia de senha (bcrypt).
+- [ ] **Login Seguro:** Autenticação via JWT com proteção contra força bruta (rate limiting).
+- [ ] **Controle de Acesso:** Rotas protegidas (Guards) e redirecionamento inteligente.
+
+### Gestão de Formulários (Private)
+- [ ] **Dashboard Geral:** Visão panorâmica com Sidebar de navegação.
+- [ ] **Construtor de Formulários:** Interface *drag-and-drop* para criar perguntas dinâmicas.
+- [ ] **Análise de Dados:** Visualização das respostas em formato de tabela (Data Tables).
+
+### Inteligência de Dados (BI)
+- [ ] **Construtor de Dashboards:** Criação de gráficos personalizados a partir das tabelas de resposta.
+- [ ] **Visualização de Gráficos:** Renderização dinâmica usando Chart.js (via Shared Components).
+
+### Compartilhamento e Exportação
+- [ ] **Public View:** Links externos para responder formulários e visualizar dashboards (se marcados como públicos).
+- [ ] **Modo Apresentação:** Visualização limpa de dashboards para reuniões.
+- [ ] **Exportação:** Geração de PDF dos relatórios e gráficos.
 
 <br/><br/>
 
@@ -82,10 +104,10 @@ our-forms/
   <summary><h3>Login e Autenticação (Etapa Atual)</h3></summary>
 
   1. [x] **Frontend (Estrutura):** Criação do esqueleto HTML da página de Login.
-  2. [ ] **Backend (Setup):** Instalação do pacote `jsonwebtoken` (JWT) no Node.js.
-  3. [ ] **Backend (API):** Criação da rota POST `/api/login` para receber credenciais.
-  4. [ ] **Segurança Backend:** Lógica de comparação de senha (`bcrypt.compare`) e geração do Token JWT.
-  5. [ ] **Integração:** Atualização do `AuthService` para realizar login e salvar o Token no `localStorage`.
+  2. [x] **Backend (Setup):** Instalação do pacote `jsonwebtoken` (JWT) no Node.js.
+  3. [x] **Backend (API):** Criação da rota POST `/api/login` para receber credenciais.
+  4. [x] **Segurança Backend:** Lógica de comparação de senha (`bcrypt.compare`) e geração do Token JWT.
+  5. [x] **Integração:** Atualização do `AuthService` para realizar login e salvar o Token no `localStorage`.
   6. [ ] **Gerenciamento de Estado:** Lógica para identificar se o usuário está logado ou não (Botão Sair/Logout).
   7. [ ] **Proteção de Rotas:** Criação de um `AuthGuard` no Angular para proteger a rota `/dashboard`.
   8. [ ] **Feedback:** Tratamento de erros de login (senha incorreta, usuário não encontrado).
@@ -107,6 +129,19 @@ our-forms/
   * **Estilização Dinâmica:** Como estilizar inputs do Angular baseados em seu estado de validação usando seletores como `[&.ng-invalid.ng-touched]`.
   * **Layout & UX:** Centralização vertical/horizontal com Flexbox, uso de fontes personalizadas (Google Fonts) e feedback visual para o usuário (botões desabilitados, cursores).
   * **API REST:** Fluxo completo de Request/Response e tratamento correto de Status Codes (201, 400, 409).
+
+</details>
+
+<details open>
+  <summary><h3>Na etapa de Login e Autenticação</h3></summary>
+
+  * **Autenticação JWT:** Geração e assinatura de tokens (JSON Web Tokens) no backend para criar sessões stateless.
+  * **Segurança Avançada:** Implementação de *Rate Limiting* manual (bloqueio por excesso de tentativas) e mitigação de ataques de força bruta.
+  * **Prevenção de Enumeration:** Uso de mensagens genéricas ("E-mail ou senha incorretos") para não revelar quais usuários existem no sistema.
+  * **Criptografia na Prática:** Comparação segura de hashes com `bcrypt.compare()` para validar credenciais sem expor a senha real.
+  * **Gerenciamento de Estado:** Persistência do token no `localStorage` e criação de métodos de serviço (`setToken`, `getToken`, `removeToken`) para controlar a sessão no frontend.
+  * **UX de Segurança:** Feedback visual imediato no formulário de login e tratamento de erros de API (401 Unauthorized, 429 Too Many Requests).
+  * **Arquitetura de Pastas:** Organização avançada de componentes por contexto (`public`, `private`, `shared`) para escalar a aplicação.
 
 </details>
 
