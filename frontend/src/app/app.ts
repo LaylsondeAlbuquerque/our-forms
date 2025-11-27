@@ -5,7 +5,7 @@ import { RouterOutlet, RouterLinkWithHref, RouterLinkActive } from '@angular/rou
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLinkWithHref, RouterLinkActive],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
