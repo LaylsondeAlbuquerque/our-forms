@@ -52,13 +52,14 @@ our-forms/
 │   │       │   └── shared/              # Recursos Globais
 │   │       │       ├── ui/              # (Botões, Cards, Inputs)
 │   │       │       └── features/        # (Motores de renderização reutilizáveis)
+│   │       ├── guards/      # Proteção de Rotas (AuthGuard, GuestGuard)
 │   │       ├── models/      # Interfaces e Tipos (CadastroModel, LoginModel)
 │   │       ├── services/    # Comunicação com API (AuthService)
 │   │       ├── app.config.ts
 │   │       └── app.routes.ts
 │   ├── angular.json
 │   └── ...
-├── .gitignore                  # arquivos que não precisam ir para o git/github
+├── .gitignore               # Arquivos ignorados pelo Git
 ├── LICENSE                  # Licença do projeto
 └── README.md                # Documentação
 ```
@@ -69,12 +70,12 @@ our-forms/
 
 ### Autenticação e Segurança
 - [x] **Cadastro de Usuários:** Criação de conta com criptografia de senha (bcrypt).
-- [ ] **Login Seguro:** Autenticação via JWT com proteção contra força bruta (rate limiting).
-- [ ] **Controle de Acesso:** Rotas protegidas (Guards) e redirecionamento inteligente.
+- [x] **Login Seguro:** Autenticação via JWT com proteção contra força bruta (rate limiting).
+- [x] **Controle de Acesso:** Rotas protegidas (Guards) e redirecionamento inteligente.
 
 ### Gestão de Formulários (Private)
-- [ ] **Dashboard Geral:** Visão panorâmica com Sidebar de navegação.
 - [ ] **Construtor de Formulários:** Interface *drag-and-drop* para criar perguntas dinâmicas.
+- [ ] **Dashboard Geral:** Visão panorâmica com Sidebar de navegação.
 - [ ] **Análise de Dados:** Visualização das respostas em formato de tabela (Data Tables).
 
 ### Inteligência de Dados (BI)
@@ -102,18 +103,32 @@ our-forms/
   8.  [x] **Estilização:** Refatoração do design utilizando **Tailwind CSS**.
 
 </details>
-<details open>
-  <summary><h3>Login e Autenticação (Etapa Atual)</h3></summary>
+<details>
+  <summary><h3>Login e Autenticação</h3></summary>
 
-  1. [x] **Frontend (Estrutura):** Criação do esqueleto HTML da página de Login.
-  2. [x] **Backend (Setup):** Instalação do pacote `jsonwebtoken` (JWT) no Node.js.
-  3. [x] **Backend (API):** Criação da rota POST `/api/login` para receber credenciais.
-  4. [x] **Segurança Backend:** Lógica de comparação de senha (`bcrypt.compare`) e geração do Token JWT.
-  5. [x] **Integração:** Atualização do `AuthService` para realizar login e salvar o Token no `localStorage`.
-  6. [x] **Gerenciamento de Estado:** Lógica para identificar se o usuário está logado ou não (Botão Sair/Logout).
-  7. [ ] **Proteção de Rotas:** Criação de um `AuthGuard` no Angular para proteger a rota `/dashboard`.
-  8. [ ] **Feedback:** Tratamento de erros de login (senha incorreta, usuário não encontrado).
-  9. [ ] **Estilização:** Refatoração do design da página de Login utilizando **Tailwind CSS**.
+  1. [x] **Frontend (Estrutura):** Criação do esqueleto HTML da página de Login e modelos de dados.
+  2. [x] **Backend (Setup):** Instalação e configuração do pacote `jsonwebtoken` (JWT).
+  3. [x] **Backend (API):** Desenvolvimento da rota POST `/api/login` com validação de dados.
+  4. [x] **Segurança Backend:** Implementação de `bcrypt` para senhas e **Rate Limiting** (limite de 5 tentativas diárias) via banco de dados.
+  5. [x] **Integração:** Atualização do `AuthService` para login, persistência do Token e dados do usuário (`localStorage`).
+  6. [x] **Arquitetura de Layouts:** Reestruturação do projeto em Layouts (`Public` e `Private`) e configuração de Rotas Filhas.
+  7. [x] **Gerenciamento de Estado:** Lógica de menu do usuário (Avatar dinâmico e Logout) na interface privada.
+  8. [x] **Proteção de Rotas:** Implementação de `AuthGuard` (protege painel) e `GuestGuard` (redireciona logados).
+  9. [x] **Estilização:** Design responsivo da tela de Login com Tailwind CSS e feedback visual de erros.
+
+</details>
+<details open>
+  <summary><h3>Construtor de Formulários (Etapa Atual)</h3></summary>
+
+  1. [ ] **Banco de Dados (Modelagem):** Criação das tabelas `forms` (título, descrição) e `questions` (tipo, enunciado, ordem, opções JSON).
+  2. [ ] **Backend (API Forms):** Rota `POST /api/forms` para criar o cabeçalho do formulário e `GET /api/forms` para listar os do usuário.
+  3. [ ] **Backend (API Questions):** Lógica para salvar um array de perguntas vinculadas a um formulário (Transação SQL ou JSON).
+  4. [ ] **Frontend (Models & Service):** Definição das interfaces (`Form`, `Question`) e criação do `FormService`.
+  5. [ ] **Frontend (Drag-and-Drop):** Instalação do **Angular CDK** e implementação da lista de perguntas reordenável.
+  6. [ ] **Frontend (Componentes Dinâmicos):** Criação da lógica visual para alternar entre tipos de pergunta (Texto, Múltipla Escolha, Checkbox).
+  7. [ ] **Frontend (Edição):** Inputs para editar o texto da pergunta e adicionar/remover opções de resposta.
+  8. [ ] **Integração:** Envio do objeto completo (Formulário + Perguntas) para o Backend salvar.
+  9. [ ] **Estilização:** Refino visual com Tailwind CSS (Cards flutuantes, botões de ação).
 
 </details>
 
@@ -137,13 +152,13 @@ our-forms/
 <details open>
   <summary><h3>Na etapa de Login e Autenticação</h3></summary>
 
-  * **Autenticação JWT:** Geração e assinatura de tokens (JSON Web Tokens) no backend para criar sessões stateless.
-  * **Segurança Avançada:** Implementação de *Rate Limiting* manual (bloqueio por excesso de tentativas) e mitigação de ataques de força bruta.
-  * **Prevenção de Enumeration:** Uso de mensagens genéricas ("E-mail ou senha incorretos") para não revelar quais usuários existem no sistema.
-  * **Criptografia na Prática:** Comparação segura de hashes com `bcrypt.compare()` para validar credenciais sem expor a senha real.
-  * **Gerenciamento de Estado:** Persistência do token no `localStorage` e criação de métodos de serviço (`setToken`, `getToken`, `removeToken`) para controlar a sessão no frontend.
-  * **UX de Segurança:** Feedback visual imediato no formulário de login e tratamento de erros de API (401 Unauthorized, 429 Too Many Requests).
-  * **Arquitetura de Pastas:** Organização avançada de componentes por contexto (`public`, `private`, `shared`) para escalar a aplicação.
+  * **Autenticação Stateless:** Implementação completa de fluxo JWT (JSON Web Tokens), desde a assinatura no backend até o armazenamento e persistência no frontend.
+  * **Segurança & Rate Limiting:** Desenvolvimento de uma lógica de defesa contra *Brute Force* no Node.js, limitando tentativas falhas diárias via banco de dados.
+  * **Criptografia & Comparação:** Uso de `bcrypt.compare()` para validação segura de credenciais e estratégias para evitar *User Enumeration* (mensagens de erro genéricas).
+  * **Arquitetura de Rotas (Shell Pattern):** Implementação de **Rotas Filhas (Child Routes)** com Lazy Loading, separando a aplicação em Layouts distintos (`PublicLayout` vs `PrivateLayout`).
+  * **Route Guards:** Criação de guardiões funcionais (`AuthGuard` e `GuestGuard`) para proteger rotas privadas e redirecionar usuários logados automaticamente.
+  * **Gerenciamento de Estado:** Controle de sessão via `AuthService` (`setToken`, `getUser`) e atualização dinâmica da interface (Menu de Usuário com Avatar).
+  * **UX & Design:** Estilização responsiva com Tailwind CSS, incluindo feedback visual de validação e menus dropdown interativos.
 
 </details>
 
@@ -164,7 +179,7 @@ cd our-forms
 ```
 
 ### 2. Configure o Banco de Dados
-Abra seu cliente MySQL (ex: phpMyAdmin) e execute o seguinte script SQL para criar o banco e a tabela necessária:
+Abra seu cliente MySQL (ex: phpMyAdmin) e execute o seguinte script SQL para criar o banco e as tabelas necessárias:
 
 ```sql
 -- 1. Cria o Banco
@@ -184,10 +199,21 @@ CREATE TABLE users (
     senha_hash VARCHAR(255) NOT NULL,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- 4. Cria a Tabela de Tentativas de Login (Rate Limiting)
+CREATE TABLE login_attempts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    tentativas INT DEFAULT 0,
+    ultima_tentativa DATETIME DEFAULT CURRENT_TIMESTAMP,
+    INDEX (email)
+);
 ```
 
 ### 3. Inicie o Backend (API)
 Abra um terminal, navegue até a pasta do servidor e instale as dependências:
+
+> ⚠️ **Importante:** Renomeie o arquivo `.env.example` para `.env` e configure suas variáveis de ambiente (banco de dados e chave JWT) antes de rodar.
 
 ```bash
 cd backend
