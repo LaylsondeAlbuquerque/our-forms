@@ -110,7 +110,7 @@ our-forms/
   3. [x] **Backend (API):** Criação da rota POST `/api/login` para receber credenciais.
   4. [x] **Segurança Backend:** Lógica de comparação de senha (`bcrypt.compare`) e geração do Token JWT.
   5. [x] **Integração:** Atualização do `AuthService` para realizar login e salvar o Token no `localStorage`.
-  6. [ ] **Gerenciamento de Estado:** Lógica para identificar se o usuário está logado ou não (Botão Sair/Logout).
+  6. [x] **Gerenciamento de Estado:** Lógica para identificar se o usuário está logado ou não (Botão Sair/Logout).
   7. [ ] **Proteção de Rotas:** Criação de um `AuthGuard` no Angular para proteger a rota `/dashboard`.
   8. [ ] **Feedback:** Tratamento de erros de login (senha incorreta, usuário não encontrado).
   9. [ ] **Estilização:** Refatoração do design da página de Login utilizando **Tailwind CSS**.
