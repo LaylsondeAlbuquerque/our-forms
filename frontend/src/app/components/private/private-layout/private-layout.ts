@@ -24,10 +24,7 @@ export class PrivateLayout {
   isMenuOpen = false;
 
   // mock do usuário
-  user = {
-    name: 'Laylson Albuquerque',
-    email: 'laylson@gmail.com'
-  }
+  user = this.authService.getUser() || { nome: 'Usuário', email: '' };
 
   // Ativar o menu
   toggleMenu() {

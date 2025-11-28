@@ -42,7 +42,8 @@ export default class Login {
       next: (resposta) => {
         console.log('Sucesso!', resposta);
         this.authService.setToken(resposta.token);
-        alert('Bem-vindo de volta!');
+        this.authService.setUser(resposta.usuario);
+        alert(`Bem-vindo de volta!`);
         this.router.navigate(['/forms']);
       },
 

@@ -33,5 +33,19 @@ export class AuthService {
   }
   removeToken(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
+
+  // Métodos para manipulação das informações dos usuários
+  setUser(user: any): void {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  getUser(): any {
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      return JSON.parse(userStr);
+    }
+    return null;
   }
 }
