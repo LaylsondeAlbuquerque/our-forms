@@ -43,6 +43,7 @@ export default class Login {
         console.log('Sucesso!', resposta);
         this.authService.setToken(resposta.token);
         alert('Bem-vindo de volta!');
+        this.router.navigate(['/forms']);
       },
 
       // Se der errado:
