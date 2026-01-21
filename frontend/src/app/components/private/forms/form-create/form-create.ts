@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-form-create',
-  imports: [CommonModule, DragDropModule],
+  imports: [CommonModule, DragDropModule, RouterLink],
   templateUrl: './form-create.html',
   styleUrl: './form-create.css',
 })

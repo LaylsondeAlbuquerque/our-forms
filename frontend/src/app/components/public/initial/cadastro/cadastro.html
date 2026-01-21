@@ -20,7 +20,7 @@
             <div class="flex flex-col w-full ">
                 <label for="primeiroNome" class="">Primeiro Nome: </label>
                 <input
-                    class="border-b-2 border-blue-600 focus:border-2 focus:!border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600 my-2 py-1 px-2 placeholder-gray-300 outline-none"
+                    class="border-b-2 border-blue-600 focus:border-2 focus:border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600 my-2 py-1 px-2 placeholder-gray-300 outline-none"
                     type="text" placeholder="Fulaninho" id="primeiroNome" name="primeiroNome"
                     [(ngModel)]="novoCadastro.primeiroNome" required #nomeInput="ngModel">
                 @if (nomeInput.invalid && (nomeInput.dirty || nomeInput.touched) && nomeInput.errors?.['required']) {
@@ -33,7 +33,7 @@
             <div class="flex flex-col w-full ">
                 <label for="sobrenome" class="">Sobrenome: </label>
                 <input
-                    class="border-b-2 border-blue-600 focus:border-2 focus:!border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600 my-2 py-1 px-2 placeholder-gray-300 outline-none"
+                    class="border-b-2 border-blue-600 focus:border-2 focus:border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600 my-2 py-1 px-2 placeholder-gray-300 outline-none"
                     type="text" placeholder="de Tal" id="sobrenome" name="sobrenome"
                     [(ngModel)]="novoCadastro.sobrenome" required #sobrenomeInput="ngModel">
                 @if (sobrenomeInput.invalid && (sobrenomeInput.dirty || sobrenomeInput.touched) &&
@@ -47,7 +47,7 @@
             <div class="flex flex-col w-full ">
                 <label for="email: " class="">Email: </label>
                 <input
-                    class="border-b-2 border-blue-600 focus:border-2 focus:!border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600 my-2 py-1 px-2 placeholder-gray-300 outline-none"
+                    class="border-b-2 border-blue-600 focus:border-2 focus:border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600 my-2 py-1 px-2 placeholder-gray-300 outline-none"
                     type="email" placeholder="fulaninhodetal@algumemail.com" id="email" name="email"
                     [(ngModel)]="novoCadastro.email" required email #emailInput="ngModel">
                 @if (emailInput.invalid && (emailInput.dirty || emailInput.touched)) {
@@ -65,7 +65,7 @@
             <div class="flex flex-col w-full ">
                 <label for="telefone">Telefone: </label>
                 <input
-                    class="border-b-2 border-blue-600 focus:border-2 focus:!border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600 my-2 py-1 px-2 placeholder-gray-300 outline-none"
+                    class="border-b-2 border-blue-600 focus:border-2 focus:border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600 my-2 py-1 px-2 placeholder-gray-300 outline-none"
                     type="text" placeholder="(00) 90000-0000" id="telefone" name="telefone"
                     [(ngModel)]="novoCadastro.telefone" required pattern="^\d{11}$" #telefoneInput="ngModel">
                 <div class="text-xs text-red-600">
@@ -83,7 +83,7 @@
             <div class="flex flex-col w-full ">
                 <label for="dataNascimento">Data de Nascimento: </label>
                 <input
-                    class="border-b-2 border-blue-600 focus:border-2 focus:!border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600  my-2 py-1 px-2 placeholder-gray-300 outline-none"
+                    class="border-b-2 border-blue-600 focus:border-2 focus:border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600  my-2 py-1 px-2 placeholder-gray-300 outline-none"
                     [class.border-purple-600]="novoCadastro.dataNascimento > today" type="date" id="dataNascimento"
                     name="dataNascimento" [(ngModel)]="novoCadastro.dataNascimento" required [max]="today"
                     #dataInput="ngModel">
@@ -102,7 +102,7 @@
             <div class="flex flex-col w-full ">
                 <label for="senha">Senha: </label>
                 <input
-                    class="border-b-2 border-blue-600 focus:border-2 focus:!border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600 my-2 py-1 px-2 placeholder-gray-300 outline-none"
+                    class="border-b-2 border-blue-600 focus:border-2 focus:border-blue-600 [&.ng-invalid.ng-touched]:border-purple-600 my-2 py-1 px-2 placeholder-gray-300 outline-none"
                     type="password" placeholder="@s7A81*252jb" id="senha" name="senha" [(ngModel)]="novoCadastro.senha"
                     required minlength="12" #senhaInput="ngModel">
                 @if (senhaInput.invalid && (senhaInput.dirty || senhaInput.touched)) {

@@ -1,1 +1,138 @@
-<p>form-create works!</p>
+<div
+    class="flex flex-col min-h-[calc(100vh-105px)] w-full items-center pt-6 px-8 sm:px-16 md:px-24 lg:px-48 xl:px-80 2xl:px-104 overflow-x-hidden relative">
+
+    <div class="w-full max-w-200 relative mx-auto">
+
+        <!-- Cabeçalho do formulário -->
+        <header class="flex flex-col w-full gap-8 pb-6 border-b-2 border-green-600">
+
+            <div class="flex flex-col w-full">
+                <label for="formTitle" class="">
+                    Título do Formulário:
+                </label>
+
+                <input type="text" id="formTitle" placeholder="Forms Create" class="
+                    w-full 
+                    border-b-2 border-blue-600 
+                    focus:border-2 
+                    my-2 py-1 px-2 
+                    placeholder-gray-300 outline-none 
+                    text-2xl md:text-3xl text-gray-800 bg-transparent
+                ">
+            </div>
+
+            <div class="flex flex-col w-full">
+                <label for="formDescription" class="">
+                    Descrição:
+                </label>
+
+                <textarea id="formDescription" rows="2" placeholder="Crie e gerencie seus formulários dinâmicos..."
+                    class="
+                    w-full 
+                    border-b-2 border-blue-600 
+                    focus:border-2
+                    my-2 py-1 px-2 
+                    placeholder-gray-300 outline-none 
+                    font-vietnam text-lg text-gray-600 bg-transparent resize-none
+                "></textarea>
+            </div>
+
+        </header>
+
+        <!-- Lista de perguntas -->
+        <section class="w-full transition-all">
+            <div class="border border-dashed border-purple-600  p-8 mt-4">
+                <div class="border-b-2 h-full flex items-center justify-center text-gray-400">
+                    Sua lista de perguntas fica aqui...
+                </div>
+            </div>
+        </section>
+
+        <!-- Sidebar -->
+
+        <div class="hidden lg:flex fixed inset-0 justify-center pointer-events-none "> 
+
+            <div class="w-full max-w-3xl relative h-full ">
+
+                <aside
+                    class=" pointer-events-auto absolute top-60 right-0 translate-x-full pl-0 lg:pl-12 flex flex-col gap-3 ">
+
+                    <div class="relative group">
+                        <button
+                            class="w-10 h-10 flex items-center justify-center text-gray-800 hover:text-blue-600 rounded-full border-0 border-blue-600 hover:border-2 transition-all">
+                            <i class="fa-solid fa-plus text-2xl"></i>
+                        </button>
+                        <span
+                            class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                            Adicionar pergunta
+                        </span>
+                    </div>
+
+                    <div class="relative group">
+                        <button
+                            class="w-10 h-10 flex items-center justify-center text-gray-800 hover:text-blue-600 rounded-full border-0 hover:border-blue-600 hover:border-2 transition-all">
+                            <i class="fa-solid fa-heading text-2xl"></i>
+                        </button>
+                        <span
+                            class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                            Adicionar título
+                        </span>
+                    </div>
+
+
+                    <div class="relative group">
+                        <button
+                            class="w-10 h-10 flex items-center justify-center text-gray-800 hover:text-blue-600 rounded-full border-0 hover:border-blue-600 hover:border-2 transition-all">
+                            <i class="fa-solid fa-grip-lines text-2xl"></i>
+                        </button>
+                        <span
+                            class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                            Adicionar seção
+                        </span>
+                    </div>
+
+                    <div class="relative group">
+                        <button
+                            class="w-10 h-10 flex items-center justify-center text-green-600 rounded-full border-0 hover:border-green-600 hover:border-2 transition-all">
+                            <i class="fa-solid fa-floppy-disk text-2xl"></i>
+                        </button>
+                        <span
+                            class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                            Salvar
+                        </span>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+
+        <div
+            class="lg:hidden fixed bottom-0 left-0 w-full bg-yellow-25 z-50 px-6 py-2">
+
+            <div class="flex items-center justify-between max-w-sm mx-auto">
+
+                <button
+                    class="w-10 h-10 flex items-center justify-center text-blue-600 rounded-full active:scale-95 transition-transform border border-blue-600">
+                    <i class="fa-solid fa-plus text-xl"></i>
+                </button>
+
+                <button
+                    class="w-10 h-10 flex items-center justify-center text-blue-600 rounded-full active:scale-95 transition-transform border border-blue-600">
+                    <i class="fa-solid fa-heading text-xl"></i>
+                </button>
+
+                <button
+                    class="w-10 h-10 flex items-center justify-center text-blue-600 rounded-full active:scale-95 transition-transform border border-blue-600">
+                    <i class="fa-solid fa-grip-lines text-xl"></i>
+                </button>
+
+                <button
+                    class="w-10 h-10 flex items-center justify-center text-green-600 rounded-full active:scale-95 transition-transform border border-green-600">
+                    <i class="fa-solid fa-floppy-disk text-xl"></i>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+</div>
