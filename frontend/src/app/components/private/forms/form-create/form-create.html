@@ -22,6 +22,7 @@
             </div>
 
             <div class="flex flex-col w-full">
+
                 <label for="formDescription" class="">
                     Descrição:
                 </label>
@@ -33,24 +34,51 @@
                     focus:border-2
                     my-2 py-1 px-2 
                     placeholder-gray-300 outline-none 
-                    font-vietnam text-lg text-gray-600 bg-transparent resize-none
+                    text-lg text-gray-600
                 "></textarea>
+
+
             </div>
 
         </header>
 
         <!-- Lista de perguntas -->
-        <section class="w-full transition-all">
+        <section class="w-full transition-all mb-60">
             <div class="border border-dashed border-purple-600  p-8 mt-4">
+
+                @for (question of questions(); track question.id) {
+
+                <div class="flex flex-col w-full gap-2">
+                    <label for="questionDescription">Sua pergunta:</label>
+                    <input type="text" id="questionDescription" placeholder="qual sua pergunta?" 
+                    class=" w-full 
+                    border-b-2 border-blue-600 
+                    focus:border-2 
+                    my-2 py-1 px-2 outline-none 
+                    placeholder-gray-300 
+                    text-lg text-gray-800"
+                    [value]="question.title"
+                    (input)="question.title = $any($event.target).value"
+                    >
+                    <div>
+                        <app-ui-select [options]="questionTypes"  [(value)]="question.type"></app-ui-select>
+                    </div>
+                </div>
+
+                } @empty {
+
                 <div class="border-b-2 h-full flex items-center justify-center text-gray-400">
                     Sua lista de perguntas fica aqui...
                 </div>
+
+                }
+
             </div>
         </section>
 
         <!-- Sidebar -->
 
-        <div class="hidden lg:flex fixed inset-0 justify-center pointer-events-none "> 
+        <div class="hidden lg:flex fixed inset-0 justify-center pointer-events-none ">
 
             <div class="w-full max-w-3xl relative h-full ">
 
@@ -106,8 +134,7 @@
             </div>
         </div>
 
-        <div
-            class="lg:hidden fixed bottom-0 left-0 w-full bg-yellow-25 z-50 px-6 py-2">
+        <div class="lg:hidden fixed bottom-0 left-0 w-full bg-yellow-25 z-50 px-6 py-2">
 
             <div class="flex items-center justify-between max-w-sm mx-auto">
 

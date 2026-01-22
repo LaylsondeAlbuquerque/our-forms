@@ -1,23 +1,32 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { RouterLink } from "@angular/router";
+import { Question, QuestionType } from '../../../../models/question.model';
+import { UiSelect } from '../../../shared/features/ui-select/ui-select';
 
 @Component({
   selector: 'app-form-create',
-  imports: [CommonModule, DragDropModule, RouterLink],
+  imports: [CommonModule, DragDropModule, RouterLink, UiSelect],
   templateUrl: './form-create.html',
   styleUrl: './form-create.css',
 })
 export class FormCreate {
 
-  perguntas = [
-    { titulo: 'Qual seu nome?', tipo: 'Texto Curto' },
-    { titulo: 'Qual sua idade?', tipo: 'Número' },
-    { titulo: 'Gosta de Angular?', tipo: 'Múltipla Escolha' }
-  ];
+  questionTypes: QuestionType[] = [
+      'short-text', 
+      'long-text', 
+      'multiple-choice', 
+      'checkboxes', 
+      'dropdown', 
+      'date', 
+      'file-upload'
+    ]
 
-  soltar(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.perguntas, event.previousIndex, event.currentIndex);
-  }
+  questions = signal<Question[]>([
+    {id: '1', title: '', type: 'short-text', Required: false},
+  ])
+
+
+
 }
