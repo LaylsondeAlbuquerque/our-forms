@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Question, QuestionType } from '../../../../models/question.model';
 import { UiSelect } from '../../../shared/features/ui-select/ui-select';
+import { FormBuilderService } from '../../../../services/form-builder.service';
 
 @Component({
   selector: 'app-form-create',
@@ -11,6 +12,8 @@ import { UiSelect } from '../../../shared/features/ui-select/ui-select';
   styleUrl: './form-create.css',
 })
 export class FormCreate {
+
+  protected formService = inject(FormBuilderService);
 
   questionTypes: QuestionType[] = [
       'short-text', 
@@ -22,10 +25,11 @@ export class FormCreate {
       'file-upload'
     ]
 
-  questions = signal<Question[]>([
-    {id: '1', title: '', type: 'short-text', Required: false},
-  ])
+  questions = this.formService.questions;
 
-
+  addQuestion() {
+    this.formService.addQuestion();
+  }
+ 
 
 }

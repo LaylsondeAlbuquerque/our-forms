@@ -4,6 +4,6 @@ export interface Question {
     id: string;
     title:string;
     type: QuestionType;
-    Required: boolean;
+    required: boolean;
     options?: string[]; // For question types that have options
 }
