@@ -13,7 +13,7 @@ import { FormBuilderService } from '../../../../services/form-builder.service';
 })
 export class FormCreate {
 
-  protected formService = inject(FormBuilderService);
+  protected formBuilderService = inject(FormBuilderService);
 
   questionTypes: QuestionType[] = [
       'short-text', 
@@ -25,10 +25,10 @@ export class FormCreate {
       'file-upload'
     ]
 
-  questions = this.formService.questions;
+  questions = this.formBuilderService.questions;
 
   addQuestion() {
-    this.formService.addQuestion();
+    this.formBuilderService.addQuestion();
   }
  
 
