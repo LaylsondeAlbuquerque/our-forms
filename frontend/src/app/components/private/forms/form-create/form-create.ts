@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Question, QuestionType } from '../../../../models/question.model';
-import { UiSelect } from '../../../shared/features/ui-select/ui-select';
+import { UiSelect } from '../../../ui/ui-select/ui-select';
 import { FormBuilderService } from '../../../../services/form-builder.service';
 
 @Component({

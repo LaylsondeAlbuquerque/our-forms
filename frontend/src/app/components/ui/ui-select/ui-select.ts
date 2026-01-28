@@ -1,6 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { QuestionType } from '../../../../models/question.model';
-
 
 @Component({
   selector: 'app-ui-select',
