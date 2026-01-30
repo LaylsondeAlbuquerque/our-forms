@@ -1,13 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Question, QuestionType } from '../../../../models/question.model';
-import { UiSelect } from '../../../ui/ui-select/ui-select';
-import { FormBuilderService } from '../../../../services/form-builder.service';
+
+import { QuestionType } from '../../../../models/question.model';
+import { FormBuilderService } from './service/form-builder.service';
+
+import { QuestionCard } from './ui/question-card/question-card';
+import { Toolbar } from './ui/toolbar/toolbar';
 
 @Component({
   selector: 'app-form-create',
-  imports: [CommonModule, DragDropModule, UiSelect],
+  imports: [CommonModule, DragDropModule, QuestionCard, Toolbar],
   templateUrl: './form-create.html',
   styleUrl: './form-create.css',
 })
@@ -15,21 +18,9 @@ export class FormCreate {
 
   protected formBuilderService = inject(FormBuilderService);
 
-  questionTypes: QuestionType[] = [
-      'short-text', 
-      'long-text', 
-      'multiple-choice', 
-      'checkboxes', 
-      'dropdown', 
-      'date', 
-      'file-upload'
-    ]
-
   questions = this.formBuilderService.questions;
 
-  addQuestion() {
-    this.formBuilderService.addQuestion();
-  }
+  
  
 
 }

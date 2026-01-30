@@ -48,22 +48,7 @@
 
                 @for (question of questions(); track question.id) {
 
-                <div class="flex flex-col w-full gap-2">
-                    <label for="questionDescription">Sua pergunta:</label>
-                    <input type="text" id="questionDescription" placeholder="qual sua pergunta?" 
-                    class=" w-full 
-                    border-b-2 border-blue-600 
-                    focus:border-2 
-                    my-2 py-1 px-2 outline-none 
-                    placeholder-gray-300 
-                    text-lg text-gray-800"
-                    [value]="question.title"
-                    (input)="question.title = $any($event.target).value"
-                    >
-                    <div>
-                        <app-ui-select [options]="questionTypes"  [(value)]="question.type"></app-ui-select>
-                    </div>
-                </div>
+                <app-question-card [question]="question"></app-question-card>
 
                 } @empty {
 
@@ -76,92 +61,10 @@
             </div>
         </section>
 
-        <!-- Sidebar -->
+        <!-- Toolbar -->
 
-        <div class="hidden lg:flex fixed inset-0 justify-center pointer-events-none ">
+        <app-toolbar (addQuestion)="this.formBuilderService.addQuestion()"></app-toolbar>
 
-            <div class="w-full max-w-3xl relative h-full ">
-
-                <aside
-                    class=" pointer-events-auto absolute top-60 right-0 translate-x-full pl-0 lg:pl-12 flex flex-col gap-3 ">
-
-                    <div class="relative group">
-                        <button
-                            class="w-10 h-10 flex items-center justify-center text-gray-800 hover:text-blue-600 rounded-full border-0 border-blue-600 hover:border-2 transition-all"
-                            (click)="addQuestion()">
-                            <i class="fa-solid fa-plus text-2xl"></i>
-                        </button>
-                        <span
-                            class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                            Adicionar pergunta
-                        </span>
-                    </div>
-
-                    <div class="relative group">
-                        <button
-                            class="w-10 h-10 flex items-center justify-center text-gray-800 hover:text-blue-600 rounded-full border-0 hover:border-blue-600 hover:border-2 transition-all">
-                            <i class="fa-solid fa-heading text-2xl"></i>
-                        </button>
-                        <span
-                            class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                            Adicionar título
-                        </span>
-                    </div>
-
-
-                    <div class="relative group">
-                        <button
-                            class="w-10 h-10 flex items-center justify-center text-gray-800 hover:text-blue-600 rounded-full border-0 hover:border-blue-600 hover:border-2 transition-all">
-                            <i class="fa-solid fa-grip-lines text-2xl"></i>
-                        </button>
-                        <span
-                            class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                            Adicionar seção
-                        </span>
-                    </div>
-
-                    <div class="relative group">
-                        <button
-                            class="w-10 h-10 flex items-center justify-center text-green-600 rounded-full border-0 hover:border-green-600 hover:border-2 transition-all">
-                            <i class="fa-solid fa-floppy-disk text-2xl"></i>
-                        </button>
-                        <span
-                            class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                            Salvar
-                        </span>
-                    </div>
-
-                </aside>
-            </div>
-        </div>
-
-        <div class="lg:hidden fixed bottom-0 left-0 w-full bg-yellow-25 z-50 px-6 py-2">
-
-            <div class="flex items-center justify-between max-w-sm mx-auto">
-
-                <button
-                    class="w-10 h-10 flex items-center justify-center text-blue-600 rounded-full active:scale-95 transition-transform border border-blue-600"
-                    (click)="addQuestion()">
-                    <i class="fa-solid fa-plus text-xl"></i>
-                </button>
-
-                <button
-                    class="w-10 h-10 flex items-center justify-center text-blue-600 rounded-full active:scale-95 transition-transform border border-blue-600">
-                    <i class="fa-solid fa-heading text-xl"></i>
-                </button>
-
-                <button
-                    class="w-10 h-10 flex items-center justify-center text-blue-600 rounded-full active:scale-95 transition-transform border border-blue-600">
-                    <i class="fa-solid fa-grip-lines text-xl"></i>
-                </button>
-
-                <button
-                    class="w-10 h-10 flex items-center justify-center text-green-600 rounded-full active:scale-95 transition-transform border border-green-600">
-                    <i class="fa-solid fa-floppy-disk text-xl"></i>
-                </button>
-
-            </div>
-        </div>
     </div>
 
 </div>

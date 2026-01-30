@@ -1,0 +1,13 @@
+<div class="flex flex-col w-full gap-2">
+    <label for="questionDescription">Sua pergunta:</label>
+    <input type="text" id="questionDescription" placeholder="qual sua pergunta?" class=" w-full 
+                    border-b-2 border-blue-600 
+                    focus:border-2 
+                    my-2 py-1 px-2 outline-none 
+                    placeholder-gray-300 
+                    text-lg text-gray-800" [value]="question.title"
+        (input)="question.title = $any($event.target).value">
+    <div>
+        <app-ui-select [options]="questionTypes" [(value)]="question.type"></app-ui-select>
+    </div>
+</div>

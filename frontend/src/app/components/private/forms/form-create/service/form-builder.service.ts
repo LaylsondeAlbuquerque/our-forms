@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Question, QuestionType } from '../models/question.model';
+import { Question, QuestionType } from '../../../../../models/question.model';
 
 @Injectable({
   providedIn: 'root',
