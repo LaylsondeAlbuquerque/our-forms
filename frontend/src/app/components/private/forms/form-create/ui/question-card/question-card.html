@@ -12,7 +12,7 @@
         <div class="flex flex-col gap-4">
 
             <app-ui-select [options]="questionTypes" [(value)]="question.type"></app-ui-select>
-            <app-ui-toggle></app-ui-toggle>
+            <app-ui-toggle [(value)]="question.required"></app-ui-toggle>
         
         </div>
 
