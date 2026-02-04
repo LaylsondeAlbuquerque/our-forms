@@ -72,6 +72,23 @@ export class FormBuilderService {
     });
   }
 
+  moveOption(questionId: string, previousIndex: number, currentIndex: number) {
+    this.#questions.update(questions => 
+      questions.map( q => {
+        if ( q.id === questionId && q.options) {
+          const novaLista = [...q.options];
+
+          moveItemInArray(novaLista, previousIndex, currentIndex);
+
+          return { ...q, options: novaLista };
+        }
+
+        return q;
+
+      })
+    );
+  }
+
 
 
 
