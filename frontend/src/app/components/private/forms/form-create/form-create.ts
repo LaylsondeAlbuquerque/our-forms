@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 
 import { FormBuilderService } from './service/form-builder.service';
 
@@ -19,7 +19,9 @@ export class FormCreate {
 
   questions = this.formBuilderService.questions;
 
-  
+  drop(event: CdkDragDrop<string[]>) {
+    this.formBuilderService.moveQuestion(event.previousIndex, event.currentIndex);
+  }
  
 
 }

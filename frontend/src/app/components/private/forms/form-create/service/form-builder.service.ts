@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
-import { Question, QuestionType } from '../../../../../models/question.model';
+import { Question } from '../../../../../models/question.model';
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Injectable({
   providedIn: 'root',
@@ -60,6 +61,17 @@ export class FormBuilderService {
     );
 
   }
+
+  moveQuestion(previousIndex: number, currentIndex: number) {
+    this.#questions.update(listaAtual => {
+      const novaLista = [...listaAtual];
+
+      moveItemInArray(novaLista, previousIndex, currentIndex);
+
+      return novaLista;
+    });
+  }
+
 
 
 
