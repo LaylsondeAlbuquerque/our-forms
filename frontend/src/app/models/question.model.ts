@@ -1,9 +1,9 @@
-export type QuestionType = 'short-text' | 'long-text' | 'multiple-choice' | 'checkboxes' | 'dropdown' | 'date' | 'file-upload';
+export type QuestionType = 'texto curto' | 'texto longo' | 'multipla escolha' | 'caixas de seleção' | 'data' | 'upload de arquivo';
 
 export interface Question {
     id: string;
     title:string;
     type: QuestionType;
     required: boolean;
-    options?: string[]; // For question types that have options
+    options: string[]; 
 }

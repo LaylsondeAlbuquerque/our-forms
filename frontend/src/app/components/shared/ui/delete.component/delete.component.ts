@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-delete-component',
@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './delete.component.css',
 })
 export class DeleteComponent {
+
+  @Input() quantQuestions: number = 1;
+  @Output() delete = new EventEmitter<void>();
 
 }

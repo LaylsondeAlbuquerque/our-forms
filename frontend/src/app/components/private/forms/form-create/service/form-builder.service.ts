@@ -8,9 +8,11 @@ export class FormBuilderService {
   
   id: number = 1;
   
-  questions = signal<Question[]>([
-    {id: '1', title: '', type: 'short-text', required: false},
+  #questions = signal<Question[]>([
+    {id: '1', title: '', type: 'texto curto', required: false, options: [ '' ]},
   ])
+
+  public questions = this.#questions.asReadonly();
 
   addQuestion() {
     this.id++;
@@ -18,10 +20,47 @@ export class FormBuilderService {
    const newQuestion: Question = {
     id: this.id.toString(),
     title: '',
-    type: 'short-text',
-    required: false
+    type: 'texto curto',
+    required: false,
+    options: [''],
    }
 
-   this.questions.update(questions => [...questions, newQuestion]);
+   this.#questions.update(questions => [...questions, newQuestion]);
   }
+
+  removeQuestion(questionId: string) {
+    this.#questions.update(questions =>
+       questions.filter( q => q.id !== questionId)
+    )
+  }
+
+  addOption(questionId: string) {
+    
+    this.#questions.update( questions => {
+      return questions.map( q => { 
+        if ( q.id === questionId) {
+           return { ...q, options: [...(q.options || []), '']}
+        }
+        return q;
+      })
+    })
+  }
+
+  removeOption(questionId: string, optionIndex: number) {
+    
+    this.#questions.update(questions =>
+      questions.map( q => {
+        if (q.id === questionId && q.options) {
+          return {
+            ...q, options: q.options.filter((_, index) => index !== optionIndex )
+          };
+        }
+        return q;
+      })
+    );
+
+  }
+
+
+
 }

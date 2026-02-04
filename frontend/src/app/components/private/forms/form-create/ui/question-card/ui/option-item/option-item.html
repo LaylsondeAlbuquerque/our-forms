@@ -1,0 +1,21 @@
+<div class="flex flex-row items-center my-4 gap-4">
+
+    <div class="cursor-move">
+        <i class="fa-solid fa-grip-vertical text-gray-400 hover:text-gray-600"></i>
+    </div>
+
+    <div class="w-6 h-5 rounded-full border border-dashed cursor-pointer"></div>
+    <input type="text" placeholder="opção {{index + 1}}" class=" w-full 
+        border-b-2 border-dashed border-blue-600 hover:border-solid 
+        focus:border-solid  outline-none 
+        placeholder-gray-300 text-gray-800"
+        [ngModel]="option" (ngModelChange)="emitirMudanca($event)">
+
+    <button 
+        class="flex flex-col justify-center items-center cursor-pointer text-red-400 hover:text-red-600 w-10 h-10 disabled:text-gray-500 disabled:cursor-not-allowed" 
+        (click)="emitirRemocao()"
+        [disabled]="quantOptions <= 1">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+</div>

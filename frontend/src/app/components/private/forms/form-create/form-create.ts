@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 
-import { QuestionType } from '../../../../models/question.model';
 import { FormBuilderService } from './service/form-builder.service';
 
 import { QuestionCard } from './ui/question-card/question-card';

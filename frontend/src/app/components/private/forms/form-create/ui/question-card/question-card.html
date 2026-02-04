@@ -1,23 +1,55 @@
-<div class="flex flex-col w-full gap-2">
+<div class="flex flex-col w-full gap-2 p-8 border border-dashed border-purple-600">
+
     <label for="questionDescription">Sua pergunta:</label>
+
+    <!-- Pergunta que o usuário quer fazer. -->
     <input type="text" id="questionDescription" placeholder="qual sua pergunta?" class=" w-full 
-                    border-b-2 border-blue-600 
-                    focus:border-2 
-                    my-2 py-1 px-2 outline-none 
-                    placeholder-gray-300 
-                    text-lg text-gray-800" [value]="question.title"
-        (input)="question.title = $any($event.target).value">
+    border-b-2 border-blue-600 
+    focus:border-2 
+    my-2 py-1 px-2 outline-none 
+    placeholder-gray-300 
+    text-lg text-gray-800" [value]="question.title" (input)="question.title = $any($event.target).value">
+
+    <!-- Opções que o usuário ira colocar a depender da pergunta -->
+
+    @switch (question.type) {
+    @case ('multipla escolha') {
+
+    <section class="mb-8">
+        
+        @for (option of question.options; track $index) {
+
+
+        <app-option-item [option]="option" [index]="$index" [quantOptions]="this.question.options.length" (optionChange)="question.options![$index] = $event" (remove)="formBuilderService.removeOption(this.question.id, $index)"></app-option-item>
+
+        }
+
+        <div class="flex flex-row items-center gap-2 px-7 ">
+            <div class="w-5 h-5 rounded-full border border-dashed cursor-pointer"></div>
+            <button
+                class="text-gray-300 py-0.5 px-2 text-sm border-b border-dashed border-gray-300 hover:border-blue-600 hover:border-b-2 cursor-text"
+                (click)="formBuilderService.addOption(question.id)">
+                Adicionar opção
+            </button>
+        </div>
+
+    </section>
+
+    }
+    @case ('caixas de seleção') {}
+    }
+
     <div class="flex flex-row items-end justify-between">
 
         <div class="flex flex-col gap-4">
 
             <app-ui-select [options]="questionTypes" [(value)]="question.type"></app-ui-select>
             <app-ui-toggle [(value)]="question.required"></app-ui-toggle>
-        
+
         </div>
 
 
-        <app-delete-component></app-delete-component>
-        
+        <app-delete-component (delete)="formBuilderService.removeQuestion(question.id)" [quantQuestions]="formBuilderService.questions().length"></app-delete-component>
+
     </div>
 </div>
