@@ -38,23 +38,36 @@ our-forms/
 ├── frontend/                # Aplicação Angular v20
 │   ├── src/
 │   │   └── app/
-│   │       ├── components/  # Arquitetura de Componentes
-│   │       │   ├── public/              # Área Pública (Acesso Externo)
-│   │       │   │   ├── initial/         # (Home, Login, Cadastro)
-│   │       │   │   ├── shared-public/   # (Visualizadores de Dashboard/Form)
-│   │       │   │   ├── public-layout/   # (Navbar Pública + Router Outlet)
-│   │       │   │   └── not-found/       # (Erro 404)
-│   │       │   ├── private/             # Área Logada (Gestão)
-│   │       │   │   ├── private-layout/  # (Sidebar + Header Logado)
-│   │       │   │   ├── profile/         # (Configurações do Usuário)
-│   │       │   │   ├── dashboard/       # (Builder, List, View Privado)
-│   │       │   │   └── forms/           # (Editor, List, Results)
-│   │       │   └── shared/              # Recursos Globais
-│   │       │       ├── ui/              # (Botões, Cards, Inputs)
-│   │       │       └── features/        # (Motores de renderização reutilizáveis)
-│   │       ├── guards/      # Proteção de Rotas (AuthGuard, GuestGuard)
-│   │       ├── models/      # Interfaces e Tipos (CadastroModel, LoginModel)
-│   │       ├── services/    # Comunicação com API (AuthService)
+│   │       ├── components/
+│   │       │   ├── private/               # Área Administrativa (Logado)
+│   │       │   │   ├── dashboard/         # Gestão de Dashboards
+│   │       │   │   │   ├── dashboard-builder/
+│   │       │   │   │   ├── dashboard-list/
+│   │       │   │   │   ├── dashboard-view/
+│   │       │   │   │   └── dashboard.routes.ts
+│   │       │   │   ├── forms/             # Gestão de Formulários
+│   │       │   │   │   ├── form-create/   # O "Coração" do Builder
+│   │       │   │   │   │   ├── service/   # (FormBuilderService - Lógica local)
+│   │       │   │   │   │   └── ui/        # Componentes exclusivos do Builder
+│   │       │   │   │   │       ├── question-card/
+│   │       │   │   │   │       │   └── ui/option-item/ # (Sub-item da pergunta)
+│   │       │   │   │   │       └── toolbar/
+│   │       │   │   │   ├── form-list/
+│   │       │   │   │   ├── form-results/
+│   │       │   │   │   └── form.routes.ts
+│   │       │   │   ├── private-layout/    # (Sidebar + Header)
+│   │       │   │   └── profile/
+│   │       │   ├── public/                # Área Pública
+│   │       │   │   ├── initial/           # (Cadastro, Home, Login)
+│   │       │   │   ├── not-found/
+│   │       │   │   ├── public-layout/
+│   │       │   │   └── shared-public/     # (Views públicas de Form/Dash)
+│   │       │   └── shared/                # Reutilizáveis Globais
+│   │       │       ├── features/          # (DashboardViewer, FormViewer)
+│   │       │       └── ui/                # (DeleteComp, UI-Select, UI-Toggle)
+│   │       ├── guards/                    # (AuthGuard, GuestGuard)
+│   │       ├── models/                    # (Cadastro, Login, Question)
+│   │       ├── services/                  # (AuthService - Global)
 │   │       ├── app.config.ts
 │   │       └── app.routes.ts
 │   ├── angular.json
@@ -74,18 +87,18 @@ our-forms/
 - [x] **Controle de Acesso:** Rotas protegidas (Guards) e redirecionamento inteligente.
 
 ### Gestão de Formulários (Private)
-- [ ] **Construtor de Formulários:** Interface *drag-and-drop* para criar perguntas dinâmicas.
-- [ ] **Dashboard Geral:** Visão panorâmica com Sidebar de navegação.
-- [ ] **Análise de Dados:** Visualização das respostas em formato de tabela (Data Tables).
+- [x] **Construtor de Formulários (Frontend):** Interface reativa usando Signals e Drag-and-Drop.
+- [x] **Editor de Perguntas:** Edição em tempo real de enunciados e opções.
+- [ ] **Integração Backend:** Salvar a estrutura do formulário no banco de dados.
+- [ ] **Listagem de Formulários:** Dashboard com os formulários criados pelo usuário.
 
 ### Inteligência de Dados (BI)
-- [ ] **Construtor de Dashboards:** Criação de gráficos personalizados a partir das tabelas de resposta.
-- [ ] **Visualização de Gráficos:** Renderização dinâmica usando Chart.js (via Shared Components).
+- [ ] **Construtor de Dashboards:** Criação de gráficos personalizados.
+- [ ] **Visualização de Gráficos:** Renderização dinâmica usando Chart.js.
 
 ### Compartilhamento e Exportação
-- [ ] **Public View:** Links externos para responder formulários e visualizar dashboards (se marcados como públicos).
-- [ ] **Modo Apresentação:** Visualização limpa de dashboards para reuniões.
-- [ ] **Exportação:** Geração de PDF dos relatórios e gráficos.
+- [ ] **Public View:** Links externos para responder formulários.
+- [ ] **Exportação:** Geração de PDF dos relatórios.
 
 <br/><br/>
 
@@ -117,18 +130,25 @@ our-forms/
   9. [x] **Estilização:** Design responsivo da tela de Login com Tailwind CSS e feedback visual de erros.
 
 </details>
-<details open>
-  <summary><h3>Construtor de Formulários (Etapa Atual)</h3></summary>
 
-  1. [ ] **Banco de Dados (Modelagem):** Criação das tabelas `forms` (título, descrição) e `questions` (tipo, enunciado, ordem, opções JSON).
-  2. [ ] **Backend (API Forms):** Rota `POST /api/forms` para criar o cabeçalho do formulário e `GET /api/forms` para listar os do usuário.
-  3. [ ] **Backend (API Questions):** Lógica para salvar um array de perguntas vinculadas a um formulário (Transação SQL ou JSON).
-  4. [ ] **Frontend (Models & Service):** Definição das interfaces (`Form`, `Question`) e criação do `FormService`.
-  5. [ ] **Frontend (Drag-and-Drop):** Instalação do **Angular CDK** e implementação da lista de perguntas reordenável.
-  6. [ ] **Frontend (Componentes Dinâmicos):** Criação da lógica visual para alternar entre tipos de pergunta (Texto, Múltipla Escolha, Checkbox).
-  7. [ ] **Frontend (Edição):** Inputs para editar o texto da pergunta e adicionar/remover opções de resposta.
-  8. [ ] **Integração:** Envio do objeto completo (Formulário + Perguntas) para o Backend salvar.
-  9. [ ] **Estilização:** Refino visual com Tailwind CSS (Cards flutuantes, botões de ação).
+<details open>
+  <summary><h3>3. Construtor de Formulários (Builder) - Etapa Atual</h3></summary>
+
+  1. [x] **Arquitetura Reativa (Signals):** Migração do gerenciamento de estado para **Angular Signals**, garantindo performance e reatividade fina.
+  2. [x] **Service Centralizado:** Criação do `FormBuilderService` com padrão "Cofre e Vitrine" (Private Fields `#` para escrita, ReadOnly para leitura).
+  3. [x] **Componentização Atômica:** Quebra da interface em `FormCreate` (Pai), `QuestionCard` (Item) e `OptionItem` (Sub-item).
+  4. [x] **CRUD no Frontend:**
+     - Adição dinâmica de perguntas e opções.
+     - Remoção inteligente com validação (ex: impedir exclusão da última opção).
+     - Edição de textos sem mutação direta (evitando erros de `undefined`).
+  5. [x] **Drag-and-Drop (CDK):**
+     - Instalação e configuração do **Angular CDK**.
+     - Reordenação de Perguntas (Lista Principal).
+     - Reordenação de Opções (Lista Interna).
+     - Implementação de *Handles* e *Placeholders* para melhor UX.
+  6. [x] **Controle de Fluxo Moderno:** Adoção da nova sintaxe `@if`, `@for` e `@switch` do Angular 17+.
+  7. [ ] **Banco de Dados:** Modelagem das tabelas `forms` e `questions`.
+  8. [ ] **Backend (API):** Rotas para salvar o JSON do formulário completo.
 
 </details>
 
@@ -149,7 +169,7 @@ our-forms/
 
 </details>
 
-<details open>
+<details>
   <summary><h3>Na etapa de Login e Autenticação</h3></summary>
 
   * **Autenticação Stateless:** Implementação completa de fluxo JWT (JSON Web Tokens), desde a assinatura no backend até o armazenamento e persistência no frontend.
@@ -159,6 +179,19 @@ our-forms/
   * **Route Guards:** Criação de guardiões funcionais (`AuthGuard` e `GuestGuard`) para proteger rotas privadas e redirecionar usuários logados automaticamente.
   * **Gerenciamento de Estado:** Controle de sessão via `AuthService` (`setToken`, `getUser`) e atualização dinâmica da interface (Menu de Usuário com Avatar).
   * **UX & Design:** Estilização responsiva com Tailwind CSS, incluindo feedback visual de validação e menus dropdown interativos.
+
+</details>
+
+<details open>
+  <summary><h3>Na etapa do Form Builder (Atual)</h3></summary>
+
+  * **Angular Signals:** Aprendi a gerenciar estado de forma reativa e segura, substituindo variáveis simples por Signals e `computed()`.
+  * **Arquitetura de Componentes (SRP):** Aplicação do **Princípio da Responsabilidade Única**, quebrando interfaces complexas em componentes menores (Smart vs Dumb Components) para facilitar a manutenção.
+  * **Padrão de Serviço:** Implementação de **Private Fields (`#`)** no Service para encapsulamento total (ninguém mexe nos dados sem permissão).
+  * **Angular CDK (Drag & Drop):** Domínio das diretivas `cdkDropList`, `cdkDrag` e `cdkDragHandle` para criar interfaces interativas complexas.
+  * **Manipulação de Arrays Imutáveis:** Uso de `.filter()`, `.map()` e `.splice()` dentro de Signals (`.update()`) para garantir a integridade dos dados.
+  * **Debug e TypeScript:** Resolução de problemas de tipagem estrita (`Object is possibly 'undefined'`) e uso correto de *Optional Chaining* e *Non-null Assertions*.
+  * **Componentização:** Comunicação eficiente entre Pai e Filho usando `@Input`, `@Output` e *Event Emitters*.
 
 </details>
 
