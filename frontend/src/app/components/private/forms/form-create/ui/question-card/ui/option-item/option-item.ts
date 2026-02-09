@@ -11,6 +11,8 @@ export class OptionItem {
 
   @Input() quantOptions: number = 1;
 
+  @Input() questionType: string = '';
+
   @Input() option: string = '';
   @Output() optionChange = new EventEmitter<string>();
 

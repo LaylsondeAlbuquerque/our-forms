@@ -27,7 +27,6 @@ export class QuestionCard {
     'multipla escolha',
     'caixas de seleção',
     'data',
-    'upload de arquivo',
   ];
 
   drop(event: CdkDragDrop<string[]>) {

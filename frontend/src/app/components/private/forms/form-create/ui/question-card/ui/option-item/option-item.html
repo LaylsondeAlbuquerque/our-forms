@@ -1,6 +1,15 @@
 <div class="flex flex-row items-center my-4 gap-4">
 
-    <div class="w-7 h-5 rounded-full border border-dashed cursor-pointer"></div>
+    @if (questionType === 'multipla escolha') {
+
+        <div class="w-7 h-5 rounded-full border border-dashed cursor-pointer"></div>
+
+    } @else if (questionType === 'caixas de seleção') {
+
+        <div class="w-6.5 h-5 rounded border border-dashed cursor-pointer"></div>
+
+    }
+
     <input type="text" placeholder="opção {{index + 1}}" class=" w-full 
         border-b-2 border-dashed border-blue-600 hover:border-solid 
         focus:border-solid  outline-none 
