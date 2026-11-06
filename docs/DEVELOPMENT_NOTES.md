@@ -107,7 +107,7 @@ A implementação atual mantém perguntas em memória e exibe o estado para depu
 
 ## Referências do repositório
 
-- [README anterior](https://github.com/LaylsondeAlbuquerque/our-forms/blob/main/README.md)
+- [README anterior](https://github.com/LaylsondeAlbuquerque/our-forms/blob/9285e2c9391733f9b4a69bc1fb55b88b9c96066b/README.md)
 - [Backend](https://github.com/LaylsondeAlbuquerque/our-forms/blob/main/backend/index.js)
 - [Dependências do frontend](https://github.com/LaylsondeAlbuquerque/our-forms/blob/main/frontend/package.json)
 - [Dependências do backend](https://github.com/LaylsondeAlbuquerque/our-forms/blob/main/backend/package.json)
